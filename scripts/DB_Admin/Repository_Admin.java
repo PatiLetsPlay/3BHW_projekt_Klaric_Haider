@@ -1,9 +1,12 @@
-package DB_Guesser;
-import Models.*;
-import java.sql.*;
+package DB_Admin;
+import Models.Admin;
 
-public class Repository_Guesser implements  IRepository_Guesser{
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
+public class Repository_Admin implements  IRepository_Admin{
     private String url      = "jdbc:mysql://localhost/vokabeln_abfragen";
 
     private String user     = "root";
@@ -11,7 +14,7 @@ public class Repository_Guesser implements  IRepository_Guesser{
 
     private Connection _connection;
 
-    public Repository_Guesser() throws ClassNotFoundException {
+    public Repository_Admin() throws ClassNotFoundException {
         //im ctor wird der Datenbanktreiber für mysql geladen
         //      erst nach dem Laden des DB-Treibers kann auf die DB zugegriffen werden
         Class<?> c = Class.forName("com.mysql.cj.jdbc.Driver");
@@ -37,12 +40,12 @@ public class Repository_Guesser implements  IRepository_Guesser{
     }
 
     @Override
-    public boolean insertGuesser(Guesser guesser) throws SQLException{
-        PreparedStatement pStmt = this._connection.prepareStatement("insert into vokabelabfrage_guesser values(null, ?, ?, ?)");
+    public boolean insertAdmin(Admin admin) throws SQLException{
+        PreparedStatement pStmt = this._connection.prepareStatement("insert into vokabelabfrage_admin values(null, ?, ?, ?)");
 
-        pStmt.setString(1, guesser.getFirstname());
-        pStmt.setString(2, guesser.getLastname());
-        pStmt.setInt(3, guesser.getScore());
+        pStmt.setString(1, admin.getFirstname());
+        pStmt.setString(2, admin.getLastname());
+        pStmt.setInt(3, admin.getUserCode());
 
 
         return pStmt.executeUpdate() == 1;

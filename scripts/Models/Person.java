@@ -1,3 +1,7 @@
+
+
+//PErson id aus constructor und in admin die id einfügen damit es funktioniert
+
 package Models;
 
 public abstract class Person {
@@ -38,7 +42,7 @@ public abstract class Person {
 
     @Override
     public String toString(){
-        return "ID: " + this._id +" Firstname: "+ this._firstname +" Lastname: "+ this._lastname +" ";
+        return "ID: " + this.getId() +" Firstname: "+ this.getFirstname() +" Lastname: "+ this.getLastname() +" ";
     }
 }
 

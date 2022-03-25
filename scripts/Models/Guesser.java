@@ -11,7 +11,7 @@ public class Guesser extends Person{
         this(0,"","", 0);
     }
     public Guesser(int id, String firstname, String lastname, int score){
-        super(id,firstname,lastname);
+        super(id, firstname,lastname);
         this.setScore(score);
     }
 

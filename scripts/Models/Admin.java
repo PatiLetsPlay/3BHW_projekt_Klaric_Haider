@@ -9,7 +9,7 @@ public class Admin extends Person{
     public void setUserCode(int usercode){ this._usercode = usercode; }
 
     public Admin(){
-        this(0,"","", 0000);
+        this(0," "," ", 0000);
     }
     public Admin(int id, String firstname, String lastname, int usercode){
         super(id,firstname,lastname);
