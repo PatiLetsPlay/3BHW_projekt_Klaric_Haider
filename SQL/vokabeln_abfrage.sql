@@ -19,6 +19,5 @@ create table vokabelabfrage_guesser(
     constraint id_PK primary key (id)
 );
 
-
 select * from vokabelabfrage_guesser;
 select * from vokabelabfrage_admin;
