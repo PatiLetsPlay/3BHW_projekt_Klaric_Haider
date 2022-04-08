@@ -13,8 +13,8 @@ public class Testen_Guesser {
     public static void main(String[] args) throws SQLException {
 
         IRepository_Guesser repGuesser = null;
-        Guesser guesser1 = new Guesser(6, "Patrick", "Klaric", 9);
-        Guesser guesser2 = new Guesser(6, "Felix", "Haider", 5);
+        Guesser guesser1 = new Guesser(6, "Patrick", "Klaric", "1234", 9);
+        Guesser guesser2 = new Guesser(7, "Felix", "Haider", "2345", 5);
 
         try {
             repGuesser = new Repository_Guesser();

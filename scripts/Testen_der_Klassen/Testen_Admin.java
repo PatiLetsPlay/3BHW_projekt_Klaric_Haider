@@ -5,6 +5,8 @@ import DB_Admin.Repository_Admin;
 import Models.Admin;
 
 import java.sql.SQLException;
+import java.util.Locale;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Testen_Admin {
@@ -14,29 +16,21 @@ public class Testen_Admin {
     public static void main(String[] args) throws SQLException {
 
         IRepository_Admin repAdmin = null;
-        Admin admin1 = new Admin(8, "Patrick", "Klaric", 9921);
-        Admin admin2 = new Admin(7, "Felix", "Haider", 5122);
+        Admin admin = inputNewAdmin();
+
+
 
         try {
             repAdmin = new Repository_Admin();
             repAdmin.open();
 
 
-            System.out.println("\n\nAdmin 1 einfügen\n");
-            if (repAdmin.insertAdmin(admin1)){
+            System.out.println("\n\nAdmin einfügen\n");
+            if (repAdmin.insertAdmin(admin)){
                 System.out.println("Admin wurde hinzugefügt");
             }else{
                 System.out.println("Admin wurde nicht hinzugefügt");
             }
-
-            System.out.println("\n\nAdmin2 einfügen\n");
-            if (repAdmin.insertAdmin(admin2)){
-                System.out.println("Admin wurde hinzugefügt");
-            }else{
-                System.out.println("Admin wurde nicht hinzugefügt");
-            }
-
-
 
         } catch (ClassNotFoundException e) {
             System.out.println("MySQL-Treiber konnte nicht geladen werden!");
@@ -51,5 +45,24 @@ public class Testen_Admin {
             }
         }
 
+    }
+
+    public static Admin inputNewAdmin(){
+        Admin a = new Admin();
+        Random random = new Random();
+        String platzhalter;
+        int randomUserCode = random.nextInt(8999) + 1000;
+
+        System.out.print("\nFirstname: ");
+        a.setFirstname(reader.nextLine());
+        System.out.print("\nLastname: ");
+        a.setLastname(reader.nextLine());
+        System.out.printf("\n Your UserCode is '%d' pls wright it down \n", randomUserCode);
+        a.setUserCode(randomUserCode);
+
+        System.out.print("Press 'Enter' if you understood");
+        platzhalter = reader.nextLine();
+
+        return a;
     }
 }
