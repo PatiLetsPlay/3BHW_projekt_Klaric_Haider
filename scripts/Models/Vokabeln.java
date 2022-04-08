@@ -20,7 +20,7 @@ public class Vokabeln {
         this._germanWord = germanWord;
     }
     public String getEnglishWord(){
-        return this._germanWord;
+        return this._englishWord;
     }
     public void setEnglishWord(String englishWord){
         this._englishWord = englishWord;
