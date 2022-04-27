@@ -1,4 +1,4 @@
-create database Vokabeln_Abfragen;
+create database Vokabeln_Abfragen collate utf8mb4_general_ci;
 use Vokabeln_Abfragen;
 
 create table vokabelabfrage_admin(
@@ -20,5 +20,11 @@ create table vokabelabfrage_guesser(
 );
 #drop table if exists vokabelabfrage_admin;
 #drop table if exists vokabelabfrage_guesser;
+insert into vokabelabfrage_guesser values(null, "Patrick", "Klaric", 900);
+insert into vokabelabfrage_guesser values(null, "Patrick", "Klaric", 12);
+insert into vokabelabfrage_guesser values(null, "Patrick", "Klaric", 30);
+insert into vokabelabfrage_guesser values(null, "Hansi", "Klaric", 300);
+
+select * from vokabelabfrage_guesser;
 select * from vokabelabfrage_guesser where firstname = "Patrick" and lastname = "Klaric";
 select * from vokabelabfrage_admin;
