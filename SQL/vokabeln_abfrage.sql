@@ -18,12 +18,8 @@ create table vokabelabfrage_guesser(
     
     constraint id_PK primary key (id)
 );
-#drop table if exists vokabelabfrage_admin;
-#drop table if exists vokabelabfrage_guesser;
-insert into vokabelabfrage_guesser values(null, "Patrick", "Klaric", 900);
-insert into vokabelabfrage_guesser values(null, "Patrick", "Klaric", 12);
-insert into vokabelabfrage_guesser values(null, "Patrick", "Klaric", 30);
-insert into vokabelabfrage_guesser values(null, "Hansi", "Klaric", 300);
+drop table if exists vokabelabfrage_admin;
+drop table if exists vokabelabfrage_guesser;
 
 select * from vokabelabfrage_guesser;
 select * from vokabelabfrage_guesser where firstname = "Patrick" and lastname = "Klaric";
