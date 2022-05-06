@@ -1,10 +1,7 @@
 package DB_Admin;
 import Models.Admin;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class Repository_Admin implements  IRepository_Admin{
     private String url      = "jdbc:mysql://localhost/vokabeln_abfragen";
@@ -49,5 +46,32 @@ public class Repository_Admin implements  IRepository_Admin{
 
 
         return pStmt.executeUpdate() == 1;
+    }
+
+    @Override
+    public Admin getAdminByUsercode(int usercode) throws SQLException {
+        //SQL-Statement erzeugen - SELECT
+        PreparedStatement pStmt = this._connection.prepareStatement("select * from vokabelabfrage_admin where usercode = ?");
+
+        //Platzhalter (?) belegen
+        pStmt.setInt(1, usercode);
+
+        //SQL-Statement an den MySQL-Server senden
+        //SELECT-Abfragen immer mit executeQuery() an den Server senden
+        ResultSet result = pStmt.executeQuery();
+
+        if(result.next()){
+            //leere Adresse erzeugen...
+            Admin a = new Admin();
+            //... und mit den Daten aus der DB_Tabelle belegen
+            a.setId(result.getInt("id"));
+            a.setFirstname(result.getString("firstname"));
+            a.setLastname(result.getString("lastname"));
+            a.setUserCode(result.getInt("usercode"));
+
+            return a;
+        }else{
+            return null;
+        }
     }
 }

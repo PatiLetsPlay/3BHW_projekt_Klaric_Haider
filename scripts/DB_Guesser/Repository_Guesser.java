@@ -1,6 +1,8 @@
 package DB_Guesser;
 import Models.*;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Repository_Guesser implements  IRepository_Guesser {
 
@@ -46,5 +48,69 @@ public class Repository_Guesser implements  IRepository_Guesser {
 
 
         return pStmt.executeUpdate() == 1;
+    }
+
+    @Override
+    public List<Guesser> getScoreFromPlayerFnLn(String firstname, String lastname) throws SQLException {
+        List<Guesser> guesser = new ArrayList<Guesser>();
+        //SQL-Statement erzeugen - SELECT
+        PreparedStatement pStmt = this._connection.prepareStatement("select * from vokabelabfrage_guesser where firstname LIKE ? and lastname LIKE ? order by score desc");
+
+        //Platzhalter (?) belegen
+        pStmt.setString(1, firstname);
+        pStmt.setString(2, lastname);
+
+
+        //SQL-Statement an den MySQL-Server senden
+        //SELECT-Abfragen immer mit executeQuery() an den Server senden
+        ResultSet result = pStmt.executeQuery();
+
+        Guesser g;
+        while(result.next()){
+            //leere Adresse erzeugen...
+            g = new Guesser();
+            //... und mit den Daten aus der DB_Tabelle belegen
+            g.setId(result.getInt("id"));
+            g.setFirstname(result.getString("firstname"));
+            g.setLastname(result.getString("lastname"));
+            g.setScore(result.getInt("score"));
+
+            guesser.add(g);
+        }
+        if(guesser.size() > 0){
+            return guesser;
+        }else{
+            return null;
+        }
+    }
+
+    @Override
+    public List<Guesser> getScoreFromAll() throws SQLException {
+        List<Guesser> guesser = new ArrayList<Guesser>();
+        //SQL-Statement erzeugen - SELECT
+        PreparedStatement pStmt = this._connection.prepareStatement("select * from vokabelabfrage_guesser order by score desc");
+
+
+        //SQL-Statement an den MySQL-Server senden
+        //SELECT-Abfragen immer mit executeQuery() an den Server senden
+        ResultSet result = pStmt.executeQuery();
+
+        Guesser g;
+        while(result.next()){
+            //leere Adresse erzeugen...
+            g = new Guesser();
+            //... und mit den Daten aus der DB_Tabelle belegen
+            g.setId(result.getInt("id"));
+            g.setFirstname(result.getString("firstname"));
+            g.setLastname(result.getString("lastname"));
+            g.setScore(result.getInt("score"));
+
+            guesser.add(g);
+        }
+        if(guesser.size() > 0){
+            return guesser;
+        }else{
+            return null;
+        }
     }
 }

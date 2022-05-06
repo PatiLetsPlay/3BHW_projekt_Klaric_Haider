@@ -7,4 +7,5 @@ public interface IRepository_Admin {
     void close() throws SQLException;
 
     boolean insertAdmin(Admin admin) throws SQLException;
+    Admin getAdminByUsercode(int usercode) throws SQLException;
 }
