@@ -42,7 +42,7 @@ public abstract class Person {
 
     @Override
     public String toString(){
-        return "ID: " + this.getId() +" Firstname: "+ this.getFirstname() +" Lastname: "+ this.getLastname() +" ";
+        return " Firstname: "+ this.getFirstname() +" Lastname: "+ this.getLastname() +" ";
     }
 }
 
